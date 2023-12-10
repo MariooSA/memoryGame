@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jueguito</title>
+    <script src="https://kit.fontawesome.com/edc5ab9ce2.js" crossorigin="anonymous"></script>
+</head>
+<style>
+    body {
+        text-align: center;
+        background-color: rgb(49, 49, 49);
+        font-family: OCR A Std, monospace;
+        font-size: 25px;
+    }
+
+    #contenedorTitulo {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #titulo {
+        color: white;
+        width: 80%;
+        
+    }
+
+    #contAciertos{
+        width: 10%;
+        margin-top: 2.5%;
+        display: flex;
+    }
+    
+    #fallos,#aciertos {
+        display: flex;
+        color: white;
+    }
+    
+    #numAciertos{
+        color: greenyellow;
+    }
+    #numFallos{
+        color: red;
+        padding-left: 50%;
+    }
+
+    #but1{
+        max-height: 40px;
+        margin-left: 4.5%;
+        margin-top: 2.5%;
+        transition: .5s;
+    }
+    
+    #contenedor {
+        justify-content: center;
+        display: flex;
+        align-items: center;
+    }
+
+    #tablero {
+        width: 80%;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        margin-left: 10%;
+    }
+
+    .carta {
+        height: 300px;
+        width: 300px;
+        margin-top: 40px;
+        backface-visibility: hidden;
+        cursor: pointer;
+        transform-style: preserve-3d;
+        transition: all 0.5s linear;
+    }
+
+    .cara {
+        border-radius: 20px;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(34, 34, 34);
+        position: absolute;
+        backface-visibility: hidden;
+    }
+
+
+    .carta:hover {
+        transform: scale(1.05);
+        transition: 1s ease;
+    }
+
+
+    .delante::before {
+        content: "";
+        position: absolute;
+        top: -3px;
+        left: -3px;
+        right: -3px;
+        bottom: -3px;
+        z-index: -1;
+        border-radius: 20px;
+        background: linear-gradient(45deg, rgb(0, 217, 255), rgb(163, 255, 163), #9494ff, rgb(224, 163, 255), rgb(255, 223, 163));
+        background-size: 300% 300%;
+        animation: color-borde 4s ease infinite;
+    }
+
+
+    @keyframes color-borde {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    .cara.detras {
+        background-color: black;
+        transform: rotateY(180deg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    img {
+        width: 80%;
+        height: 80%;
+    }
+
+    #modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        z-index: 999;
+    }
+
+    #modal-content {
+        background: #292929;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .reinicio {
+        padding: 10px 20px;
+        background-color: rgb(124, 57, 231);
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+        transition: .5s;
+    }
+
+    .reinicio:hover{
+        background-color: #9494ff;
+    }
+</style>
+
+<body>
+    <div id="contenedorTitulo">
+        <button class="reinicio" id="but1">Reiniciar</button>
+        <h1 id="titulo">Juego memorizar</h1>
+        <div id="contAciertos">
+            <div id="aciertos">
+                <i class="fa-solid fa-check" id="numAciertos"></i>
+            </div>
+            <div id="fallos">
+                <i class="fa-solid fa-xmark" id="numFallos"></i>
+            </div>
+        </div>
+    </div>
+    <div id="contenedor">
+        <div id="tablero">
+        </div>
+    </div>
+    <div id="modal">
+        <div id="modal-content">
+            <h2 id="tituloModal">Has ganado figura</h2>
+            <button class="reinicio">Reiniciar</button>
+        </div>
+    </div>
+</body>
+<script src="js/jquery-3.7.1.min.js"></script>
+<script src="js/jueguito.js"></script>
+
+</html>
